@@ -50,7 +50,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     image = models.ImageField(upload_to=upload_path, null=True, blank=True)
     gender = models.CharField(choices=GENDER_CHOICES,
-                              max_length=20)
+                              max_length=20,blank=False)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
@@ -65,13 +65,13 @@ class CustomUser(AbstractUser):
     date_of_birth = models.DateField(null=True, blank=True)
     token = models.CharField(max_length=100, null=True, blank=True)
     show_me = models.CharField(
-        choices=GENDER_CHOICES, max_length=20)
+        choices=GENDER_CHOICES, max_length=20, blank=False)
     passion = models.ManyToManyField(
-        Passion, related_name='passion')
+        Passion, related_name='passion', blank=False)
     sexual_orientation = models.ManyToManyField(
-        SexualOrientation, related_name='sexual_orientation')
+        SexualOrientation, related_name='sexual_orientation', blank=False)
     looking_for = models.CharField(
-        choices=LOOKING_FOR_CHOICES, max_length=100)
+        choices=LOOKING_FOR_CHOICES, max_length=100, blank=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name']
